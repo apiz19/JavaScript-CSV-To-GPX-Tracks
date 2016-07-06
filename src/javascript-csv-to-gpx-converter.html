@@ -67,8 +67,9 @@
 				outputBoxPanel.appendChild(outputBoxPanelBody);
 
 				var button = document.createElement('button');
-				button.className = 'submit-button btn btn-default';
+				button.className = 'btn btn-default';
 				button.innerHTML = 'Convert';
+				button.addEventListener('click', readInput, false)
 
 				function readInput() {
 					var inputElement = container.querySelector('.input-content');
@@ -95,21 +96,19 @@
 					for(var i = 0; i < data.length; i++){
 						var line = data[i].trim().replace(/\s\s+/g, ' ').split(",");
 
-								//console.log(line);
-								
-								output += '<wpt lat="' + line[1] + '" lon="' + line[2] + '">\r\n';
-								//output += ' <time>2015-01-31T09:31:15Z</time>\r\n';
-								output += ' <name>' + line[0] + '</name>\r\n';
-								output += ' <sym>Waypoint</sym>\r\n';
-								output += ' <extensions>\r\n';
-								output += '  <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">\r\n';
-								output += '   <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>\r\n';
-								output += '   <gpxx:Categories>\r\n';
-								output += '    <gpxx:Category>Category 1</gpxx:Category>\r\n';
-								output += '   </gpxx:Categories>\r\n';
-								output += '  </gpxx:WaypointExtension>\r\n';
-								output += ' </extensions>\r\n';
-								output += '</wpt>\r\n';
+						output += '<wpt lat="' + line[1] + '" lon="' + line[2] + '">\r\n';
+						//output += ' <time>2015-01-31T09:31:15Z</time>\r\n';
+						output += ' <name>' + line[0] + '</name>\r\n';
+						output += ' <sym>Waypoint</sym>\r\n';
+						output += ' <extensions>\r\n';
+						output += '  <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">\r\n';
+						output += '   <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>\r\n';
+						output += '   <gpxx:Categories>\r\n';
+						output += '    <gpxx:Category>Category 1</gpxx:Category>\r\n';
+						output += '   </gpxx:Categories>\r\n';
+						output += '  </gpxx:WaypointExtension>\r\n';
+						output += ' </extensions>\r\n';
+						output += '</wpt>\r\n';
 					}
 
 					outputTextArea.innerHTML += output;
@@ -119,9 +118,6 @@
 				container.appendChild(inputBoxPanel);
 				container.appendChild(outputBoxPanel);
 				container.appendChild(button);
-
-				var submitButton = container.querySelector('.submit-button');
-				submitButton.addEventListener('click', readInput, false);
 			}())
 		</script>
 	</body>
