@@ -1,94 +1,128 @@
 <!doctype html>
 <html lang="bg">
-<head>
-	<meta charset="UTF-8">
-	<title>CSV to GPX Converter</title>	
-</head>
-<body>
-	<div id="container">
-	</div>
-	<script type="text/javascript">
-	window.onload = function(){
-		var container = document.getElementById('container');
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript CSV To GPX Converter</title>	
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="#">JavaScript CSV To GPS Converter</a>
+			</div>
+			<ul class="nav navbar-nav">
+			  <li class="active"><a href="#">Home</a></li>
+			  <li><a href="http://sixeightone.eu">SixEightOne.eu</a></li>
+			</ul>
+		  </div>
+		</nav>
+		<div id="container" class="container">
+		
+		</div>
+		<script type="text/javascript">
+			(function(){
+				var container = document.getElementById('container');
 
-		var inputTitle = document.createElement('h2');
-		var outputTitle = document.createElement('h2');
+				var inputTitle = document.createElement('h2');
+				var outputTitle = document.createElement('h2');
 
-		inputTitle.innerHTML = "CSV";
-		outputTitle.innerHTML = "GPX";
+				inputTitle.innerHTML = "CSV";
+				outputTitle.innerHTML = "GPX";
 
-		var inputTextArea = document.createElement('textarea');
-		inputTextArea.className = 'input-content';
-		inputTextArea.style.display = "block";
-		inputTextArea.style.width = "90%";
-		inputTextArea.style.height = "300px";
+				var inputBoxPanel = document.createElement('div');
+				inputBoxPanel.className = 'panel panel-default';
+				
+				var inputBoxPanelHeading = document.createElement('div');
+				inputBoxPanelHeading.className = 'panel-heading';
+				
+				var inputBoxPanelBody = document.createElement('div');
+				inputBoxPanelBody.className = 'panel-body';
+					
+				var inputTextArea = document.createElement('textarea');
+				inputTextArea.className = 'input-content form-control';
+				
+				inputBoxPanelHeading.appendChild(inputTitle);
+				inputBoxPanelBody.appendChild(inputTextArea);
+				
+				inputBoxPanel.appendChild(inputBoxPanelHeading);
+				inputBoxPanel.appendChild(inputBoxPanelBody);
 
-		var outputTextArea = document.createElement('textarea');
-		outputTextArea.className = 'output-content';
-		outputTextArea.style.display = "block";
-		outputTextArea.style.width = "90%";
-		outputTextArea.style.height = "300px";
+				var outputBoxPanel = document.createElement('div');
+				outputBoxPanel.className = 'panel panel-default';
+				
+				var outputBoxPanelHeading = document.createElement('div');
+				outputBoxPanelHeading.className = 'panel-heading';
+				
+				var outputBoxPanelBody = document.createElement('div');
+				outputBoxPanelBody.className = 'panel-body';
+				
+				var outputTextArea = document.createElement('textarea');
+				outputTextArea.className = 'output-content form-control';
+				
+				outputBoxPanelHeading.appendChild(outputTitle);
+				outputBoxPanelBody.appendChild(outputTextArea);
+				
+				outputBoxPanel.appendChild(outputBoxPanelHeading);
+				outputBoxPanel.appendChild(outputBoxPanelBody);
 
-		var button = document.createElement('button');
-		button.className = 'submit-button';
-		button.innerHTML = 'Convert';
+				var button = document.createElement('button');
+				button.className = 'submit-button btn btn-default';
+				button.innerHTML = 'Convert';
 
-		function readInput() {
-			var inputElement = container.querySelector('.input-content');
-			var inputContent = inputElement.value;
+				function readInput() {
+					var inputElement = container.querySelector('.input-content');
+					var inputContent = inputElement.value;
 
-			var inputData = inputContent.split("\n");
+					var inputData = inputContent.split("\n");
 
-			convert(inputData);
-		}
+					convert(inputData);
+				}
 
-		function convert(data){
-			outputTextArea.innerHTML = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\r\n';
-			outputTextArea.innerHTML += '<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="MapSource 6.13.7" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">\r\n';
-			outputTextArea.innerHTML += '<metadata>\r\n';
-			outputTextArea.innerHTML += ' <link href="http://www.garmin.com">\r\n';
-			outputTextArea.innerHTML += '  <text>Garmin International</text>\r\n';
-			outputTextArea.innerHTML += ' </link>\r\n';
-			//outputTextArea.innerHTML += ' <time>2015-01-31T09:31:41Z</time>\r\n';
-			outputTextArea.innerHTML += ' <bounds maxlat="0" maxlon="0" minlat="0" minlon="0" />\r\n';
-			outputTextArea.innerHTML += '</metadata>\r\n';
-			
-			var output = '';
+				function convert(data){
+					outputTextArea.innerHTML = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\r\n';
+					outputTextArea.innerHTML += '<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="MapSource 6.13.7" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">\r\n';
+					outputTextArea.innerHTML += '<metadata>\r\n';
+					outputTextArea.innerHTML += ' <link href="http://www.garmin.com">\r\n';
+					outputTextArea.innerHTML += '  <text>Garmin International</text>\r\n';
+					outputTextArea.innerHTML += ' </link>\r\n';
+					//outputTextArea.innerHTML += ' <time>2015-01-31T09:31:41Z</time>\r\n';
+					outputTextArea.innerHTML += ' <bounds maxlat="0" maxlon="0" minlat="0" minlon="0" />\r\n';
+					outputTextArea.innerHTML += '</metadata>\r\n';
+					
+					var output = '';
 
-			for(var i = 0; i < data.length; i++){
-				var line = data[i].trim().replace(/\s\s+/g, ' ').split(",");
+					for(var i = 0; i < data.length; i++){
+						var line = data[i].trim().replace(/\s\s+/g, ' ').split(",");
 
-						//console.log(line);
-						
-						output += '<wpt lat="' + line[1] + '" lon="' + line[2] + '">\r\n';
-						//output += ' <time>2015-01-31T09:31:15Z</time>\r\n';
-						output += ' <name>' + line[0] + '</name>\r\n';
-						output += ' <sym>Waypoint</sym>\r\n';
-						output += ' <extensions>\r\n';
-						output += '  <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">\r\n';
-						output += '   <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>\r\n';
-						output += '   <gpxx:Categories>\r\n';
-						output += '    <gpxx:Category>Category 1</gpxx:Category>\r\n';
-						output += '   </gpxx:Categories>\r\n';
-						output += '  </gpxx:WaypointExtension>\r\n';
-						output += ' </extensions>\r\n';
-						output += '</wpt>\r\n';
+								//console.log(line);
+								
+								output += '<wpt lat="' + line[1] + '" lon="' + line[2] + '">\r\n';
+								//output += ' <time>2015-01-31T09:31:15Z</time>\r\n';
+								output += ' <name>' + line[0] + '</name>\r\n';
+								output += ' <sym>Waypoint</sym>\r\n';
+								output += ' <extensions>\r\n';
+								output += '  <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">\r\n';
+								output += '   <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>\r\n';
+								output += '   <gpxx:Categories>\r\n';
+								output += '    <gpxx:Category>Category 1</gpxx:Category>\r\n';
+								output += '   </gpxx:Categories>\r\n';
+								output += '  </gpxx:WaypointExtension>\r\n';
+								output += ' </extensions>\r\n';
+								output += '</wpt>\r\n';
 					}
 
 					outputTextArea.innerHTML += output;
 					outputTextArea.innerHTML += '</gpx>\r\n';
-
 				}
 
-				container.appendChild(inputTitle);
-				container.appendChild(inputTextArea);
-				container.appendChild(outputTitle);
-				container.appendChild(outputTextArea);
+				container.appendChild(inputBoxPanel);
+				container.appendChild(outputBoxPanel);
 				container.appendChild(button);
 
 				var submitButton = container.querySelector('.submit-button');
 				submitButton.addEventListener('click', readInput, false);
-			}
+			}())
 		</script>
 	</body>
 </html>
