@@ -1,2 +1,3 @@
-# csv-to-gpx-converter
-Convert CSV files to GPX format
+# JavaScript CSV To GPX Converter
+
+Convert CSV (Comma Separated Values) content to GPX format
